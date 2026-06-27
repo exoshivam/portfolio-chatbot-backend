@@ -10,10 +10,7 @@ class Config:
     GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 
     # Embedding model (local, sentence-transformers)
-    EMBEDDING_MODEL = os.getenv(
-        "EMBEDDING_MODEL",
-        "sentence-transformers/all-MiniLM-L6-v2"
-    )
+    VOYAGE_API_KEY = os.getenv("VOYAGE_API_KEY")
 
     # Chunking parameters
     CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 500))

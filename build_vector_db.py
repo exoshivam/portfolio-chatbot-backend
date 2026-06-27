@@ -31,7 +31,7 @@ def main():
 
     texts = [c["text"] for c in chunks]
     print("Generating embeddings...")
-    embeddings = embedder.encode(texts)
+    embeddings = embedder.encode_documents(texts)
 
     embeddings = np.array(
         embeddings,

@@ -14,7 +14,7 @@ class RAGService:
         if not self.vectorstore.is_ready():
             return ""
 
-        embedding = self.embedder.encode(question)
+        embedding = self.embedder.encode_query(question)
 
         docs = self.vectorstore.search(
             embedding,

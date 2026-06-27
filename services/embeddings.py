@@ -1,4 +1,4 @@
-from sentence_transformers import SentenceTransformer
+import voyageai
 
 from config import Config
 
@@ -6,16 +6,29 @@ from config import Config
 class EmbeddingService:
 
     def __init__(self):
-        self.model = SentenceTransformer(
-            Config.EMBEDDING_MODEL
+        self.client = voyageai.Client(
+            api_key=Config.VOYAGE_API_KEY
         )
 
-    def encode(self, texts):
+    def encode_documents(self, texts):
+
         if isinstance(texts, str):
             texts = [texts]
 
-        return self.model.encode(
+        result = self.client.embed(
             texts,
-            convert_to_numpy=True,
-            normalize_embeddings=True
+            model="voyage-3-lite",
+            input_type="document"
         )
+
+        return result.embeddings
+
+    def encode_query(self, text):
+
+        result = self.client.embed(
+            [text],
+            model="voyage-3-lite",
+            input_type="query"
+        )
+
+        return result.embeddings
