@@ -6,22 +6,32 @@ import numpy as np
 
 from config import Config
 from services.embeddings import EmbeddingService
-from utils.helpers import load_documents
+from utils.helpers import chunk_documents
 
 
 def main():
+    print("Loading and chunking documents...")
 
-    documents = load_documents(
-        Config.DOCS_PATH
-    )
+    chunks = chunk_documents(Config.DOCS_PATH)
 
-    if not documents:
+    if not chunks:
         print("No documents found.")
         return
 
+    print(f"Found {len(chunks)} chunks from docs:")
+    sources = set(c["source"] for c in chunks)
+    for src in sorted(sources):
+        count = sum(
+            1 for c in chunks if c["source"] == src
+        )
+        print(f"  {src}: {count} chunks")
+
+    print("\nLoading embedding model...")
     embedder = EmbeddingService()
 
-    embeddings = embedder.encode(documents)
+    texts = [c["text"] for c in chunks]
+    print("Generating embeddings...")
+    embeddings = embedder.encode(texts)
 
     embeddings = np.array(
         embeddings,
@@ -29,28 +39,28 @@ def main():
     )
 
     dimension = embeddings.shape[1]
-
     index = faiss.IndexFlatIP(dimension)
-
     index.add(embeddings)
 
-    os.makedirs(
-        os.path.dirname(Config.VECTOR_DB_PATH),
-        exist_ok=True
+    # Save to vector_store/
+    os.makedirs(Config.VECTOR_STORE_DIR, exist_ok=True)
+
+    index_path = os.path.join(
+        Config.VECTOR_STORE_DIR, "faiss.index"
+    )
+    metadata_path = os.path.join(
+        Config.VECTOR_STORE_DIR, "metadata.pkl"
     )
 
-    faiss.write_index(
-        index,
-        Config.VECTOR_DB_PATH + ".index"
-    )
+    faiss.write_index(index, index_path)
 
-    with open(
-        Config.VECTOR_DB_PATH + ".pkl",
-        "wb"
-    ) as f:
-        pickle.dump(documents, f)
+    with open(metadata_path, "wb") as f:
+        pickle.dump(chunks, f)
 
-    print(f"Indexed {len(documents)} documents.")
+    print(f"\nSaved {len(chunks)} chunks to:")
+    print(f"  {index_path}")
+    print(f"  {metadata_path}")
+    print("Done!")
 
 
 if __name__ == "__main__":

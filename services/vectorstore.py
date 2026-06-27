@@ -10,25 +10,30 @@ from config import Config
 class VectorStore:
 
     def __init__(self):
-
         self.index = None
-        self.documents = []
+        self.chunks = []
 
-        index_path = Config.VECTOR_DB_PATH + ".index"
-        docs_path = Config.VECTOR_DB_PATH + ".pkl"
+        index_path = os.path.join(
+            Config.VECTOR_STORE_DIR, "faiss.index"
+        )
+        metadata_path = os.path.join(
+            Config.VECTOR_STORE_DIR, "metadata.pkl"
+        )
 
         if os.path.exists(index_path):
             self.index = faiss.read_index(index_path)
 
-        if os.path.exists(docs_path):
-            with open(docs_path, "rb") as f:
-                self.documents = pickle.load(f)
+        if os.path.exists(metadata_path):
+            with open(metadata_path, "rb") as f:
+                self.chunks = pickle.load(f)
 
     def is_ready(self):
-        return self.index is not None and len(self.documents) > 0
+        return (
+            self.index is not None
+            and len(self.chunks) > 0
+        )
 
     def search(self, embedding, top_k):
-
         if not self.is_ready():
             return []
 
@@ -40,12 +45,10 @@ class VectorStore:
         results = []
 
         for idx in indices[0]:
-
             if idx == -1:
                 continue
-
             results.append(
-                self.documents[idx]
+                self.chunks[idx]["text"]
             )
 
         return results
