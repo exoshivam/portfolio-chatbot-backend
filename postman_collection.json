@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "Portfolio Agent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Chat",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "http://localhost:8000/chat", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["chat"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"What projects have you worked on?\",\n  \"session_id\": \"session-123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Contact",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "http://localhost:8000/contact", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["contact"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"company\": \"Tech Corp\",\n  \"message\": \"We are interested in hiring you.\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Resume",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8000/resume", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["resume"] }
+      }
+    },
+    {
+      "name": "Match Job",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "http://localhost:8000/match_job", "protocol": "http", "host": ["localhost"], "port": "8000", "path": ["match_job"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"job_description\": \"Looking for a Full Stack Developer with React, Python, and MongoDB experience. AI knowledge is a plus.\"\n}"
+        }
+      }
+    }
+  ]
+}
