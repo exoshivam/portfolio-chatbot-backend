@@ -10,15 +10,7 @@ Shivam primarily works with JavaScript/TypeScript for web development using Reac
 
 ## What are Shivam's main projects?
 
-Shivam has built two major projects:
-1. **AI Career Mentor** -
-- Built an adaptive interview engine that dynamically generates domain-specific questions and follow-ups based on user responses.
-- Implemented LLM-based answer evaluation and automated scoring system with final hire/no-hire decision logic.
-- Integrated SerpAPI for real-time project recommendation with GitHub links of the projects.
-- Integrated course recommendations based on user's weak area with SerpAPI.
-
-2. **Position Doctor**-
-Position Doctor is an rule engine and AI-powered stock position advisory platform that analyzes market data using technical indicators such as Moving Averages (MA5, MA14, MA21), RSI, volume, and support/resistance levels to generate actionable trading insights. It leverages a Large Language Model (LLM) to transform complex market analysis into clear, structured recommendations covering the current market situation, suggested action, potential risks, and key levels to watch, helping retail investors make more informed short-term trading decisions.
+Detailed information about all of Shivam's projects is available in the Projects documentation.
 
 ## Where is Shivam currently studying?
 
