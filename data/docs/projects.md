@@ -1,4 +1,3 @@
-# Projects
 
 ## AI Career Mentor – LLM-Based Interview & Career Guidance System
 

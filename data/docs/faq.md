@@ -8,10 +8,6 @@ You can reach Shivam via email at shivamyadav.work05@gmail.com or by phone at +9
 
 Shivam primarily works with JavaScript/TypeScript for web development using React.js on the frontend and Node.js/Express.js or FastAPI on the backend, with MongoDB as the database. For AI and ML projects, he uses Python with LangChain, LangGraph, and various LLM frameworks.
 
-## What are Shivam's main projects?
-
-Detailed information about all of Shivam's projects is available in the Projects documentation.
-
 ## Where is Shivam currently studying?
 
 Shivam is pursuing his B-Tech in Computer Science and Engineering at JSS Academy of Technical Education, Noida.

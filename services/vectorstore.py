@@ -33,7 +33,7 @@ class VectorStore:
             and len(self.chunks) > 0
         )
 
-    def search(self, embedding, top_k):
+    def search(self, embedding, top_k, source_filter=None):
         if not self.is_ready():
             return []
 
@@ -41,14 +41,25 @@ class VectorStore:
             np.array(embedding, dtype=np.float32),
             top_k
         )
+        print("\n===== SEARCH RESULTS =====")
+        for score, idx in zip(distances[0], indices[0]):
+            print(f"Score: {score:.4f}")
+            if idx != -1:
+                print(self.chunks[idx]["source"])
+                print(self.chunks[idx]["text"][:200])
+                print("-" * 60)        
 
         results = []
 
         for idx in indices[0]:
             if idx == -1:
                 continue
-            results.append(
-                self.chunks[idx]["text"]
-            )
+
+            chunk = self.chunks[idx]
+
+            if source_filter and chunk["source"] not in source_filter:
+                continue
+
+            results.append(chunk["text"])
 
         return results

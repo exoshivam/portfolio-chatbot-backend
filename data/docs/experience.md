@@ -1,4 +1,3 @@
-# Experience & Certifications
 
 ## Certifications
 
