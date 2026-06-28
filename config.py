@@ -27,4 +27,4 @@ class Config:
     )
 
     # Retrieval
-    TOP_K = int(os.getenv("TOP_K", 8))
+    TOP_K = int(os.getenv("TOP_K", 5))
