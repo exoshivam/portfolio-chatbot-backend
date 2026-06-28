@@ -19,6 +19,7 @@
 - Node.js
 - Express.js
 - REST APIs
+- FastAPI
 
 ## Databases
 

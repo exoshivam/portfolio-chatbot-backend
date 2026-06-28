@@ -9,7 +9,8 @@ Computer Science undergraduate with strong experience in full-stack development 
 - **Phone**: +91 9205962970
 - **Email**: shivamyadav.work05@gmail.com
 - **Address**: JSS University boys hostel, Sector 62, Noida
-- **LinkedIn**: LinkedIn Profile Available
+- **LinkedIn**: https://www.linkedin.com/in/shivam-yadav2106
+- **GitHub**: https://github.com/exoshivam
 
 ## Education
 
